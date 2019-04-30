@@ -11,7 +11,7 @@ public class MyHeap {
           check = true;
         }
       }
-      else if (rChild < size && data[lChild] < data[rChild]) {
+      else if (rChild < size || data[lChild] < data[rChild]) {
         if (data[idx] < data[rChild]) {
           max = rChild;
           check = true;
@@ -21,6 +21,7 @@ public class MyHeap {
         swap(data, idx, max);
         idx = max;
       }
+      else idx++;
     }
   }
   private static void pushUp(int[] data, int idx) {
@@ -38,5 +39,10 @@ public class MyHeap {
     int temp = data[x];
     data[x] = data[y];
     data[y] = temp;
+  }
+  public static void main(String[] args) {
+    int[] data = {1, 6, 3, 6, 324, -5, 18, 30, 9, -4};
+    heapify(data);
+    HeapPrinter.print(data);
   }
 }
