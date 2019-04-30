@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyHeap {
   private static void pushDown(int[] data, int size, int idx) {
     while (idx * 2 < size - 1) {
@@ -33,7 +34,11 @@ public class MyHeap {
     }
   }
   public static void heapsort(int[] data) {
-
+    heapify(data);
+    for (int idx = data.length - 1; idx > 0; idx--) {
+      swap(data, 0, idx);
+      pushDown(data, idx + 1, data[idx]);
+    }
   }
   private static void swap(int[] data, int x, int y) {
     int temp = data[x];
@@ -42,7 +47,10 @@ public class MyHeap {
   }
   public static void main(String[] args) {
     int[] data = {1, 6, 3, 6, 324, -5, 18, 30, 9, -4};
-    heapify(data);
-    HeapPrinter.print(data);
+  //  heapify(data);
+  //  HeapPrinter.print(data);
+    heapsort(data);
+    System.out.println(Arrays.toString(data));
+
   }
 }
