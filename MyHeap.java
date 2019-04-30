@@ -1,19 +1,33 @@
 public class MyHeap {
   private static void pushDown(int[] data, int size, int idx) {
-    while (data[idx] > data[2 * idx + 1]) {
-      swap(data, idx, 2 * idx + 1);
-      idx++;
-    }
-    while (data[idx] > data[2 * idx + 2]) {
-      swap(data, idx, 2 * idx + 2);
-      idx++;
+    while (idx * 2 < size - 1) {
+      int max = 0;
+      boolean check = false;
+      int lChild = idx * 2 + 1;
+      int rChild = idx * 2 + 2;
+      if (rChild >= size || data[lChild] >= data[rChild]) {
+        if (data[idx] < data[lChild]) {
+          max = lChild;
+          check = true;
+        }
+      }
+      else if (rChild < size && data[lChild] < data[rChild]) {
+        if (data[idx] < data[rChild]) {
+          max = rChild;
+          check = true;
+        }
+      }
+      if (check) {
+        swap(data, idx, max);
+        idx = max;
+      }
     }
   }
   private static void pushUp(int[] data, int idx) {
 
   }
   public static void heapify(int[] data) {
-    for(int idx = 0; idx < data.length; idx++) {
+    for(int idx = data.length - 1; idx >= 0; idx--) {
       pushDown(data, data.length, idx);
     }
   }
