@@ -25,9 +25,6 @@ public class MyHeap {
       else idx++;
     }
   }
-  private static void pushUp(int[] data, int idx) {
-
-  }
   public static void heapify(int[] data) {
     for(int idx = data.length - 1; idx >= 0; idx--) {
       pushDown(data, data.length, idx);
@@ -37,7 +34,7 @@ public class MyHeap {
     heapify(data);
     for (int idx = data.length - 1; idx > 0; idx--) {
       swap(data, 0, idx);
-      pushDown(data, idx + 1, data[idx]);
+      pushDown(data, idx, 0);
     }
   }
   private static void swap(int[] data, int x, int y) {
